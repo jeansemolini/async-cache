@@ -1,9 +1,5 @@
 package com.semolini.async;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.SerializerConfig;
-import com.semolini.async.cache.UserSerializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -12,8 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.io.ObjectInputFilter;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 @SpringBootApplication
@@ -47,25 +41,6 @@ public class AsyncApplication {
 		executor.setThreadNamePrefix("Teste-");
 		executor.initialize();
 		return executor;
-	}
-
-	@Bean
-	public Config hazelCastConfig() {
-		Config config = new Config();
-		config.addMapConfig(mapConfig());
-		config.getSerializationConfig().addSerializerConfig(serializerConfig());
-		return config;
-	}
-
-	private MapConfig mapConfig() {
-		MapConfig mapConfig = new MapConfig("urls");
-		mapConfig.setTimeToLiveSeconds(15);
-		mapConfig.setMaxIdleSeconds(15);
-		return mapConfig;
-	}
-
-	private SerializerConfig serializerConfig() {
-		return new SerializerConfig().setImplementation(new UserSerializer()).setTypeClass(CompletableFuture.class);
 	}
 
 }

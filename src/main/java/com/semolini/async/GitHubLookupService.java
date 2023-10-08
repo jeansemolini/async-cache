@@ -41,11 +41,11 @@ public class GitHubLookupService {
         return CompletableFuture.completedFuture(results);
     }
 
-//    @CacheEvict(value = "urls", allEntries = true)
+    @CacheEvict(value = "urls", allEntries = true)
     @Scheduled(fixedRate = 10000)
     public void emptyUrlsCache() {
 //        Cache urls = cacheManager.getCache("urls");
         logger.info(cacheManager.getCache("urls").getNativeCache().toString());
-//        logger.info("emptying URLs cache");
+        logger.info("emptying URLs cache");
     }
 }
