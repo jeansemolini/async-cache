@@ -1,0 +1,21 @@
+hazelcast:
+  network:
+    join:
+      multicast:
+        enabled: true
+#  map:
+#    default:
+#      time-to-live-seconds: 60
+#      max-idle-seconds: 0
+#      eviction:
+#        eviction-policy: LRU
+#        max-size-policy: PER_NODE
+#        size: 5000
+#      eviction:
+#        eviction-policy: LRU
+#        max-size-policy: PER_NODE
+#        size: 1000
+#  serialization:
+#    serializers:
+#      - type-class: CompletableFuture
+#        class-name: UrlStreamSerializer
